@@ -1,0 +1,44 @@
+.request-form {
+  position: relative;
+
+  &__data {
+    position: relative;
+    z-index: 1;
+    transition: all 0.4s;
+  }
+
+  &__success {
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    transition: {
+      property: opacity, transform, visibility;
+      duration: 0.4s;
+    };
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate3d(0,40px,0);
+  }
+
+  &.success {
+    .request-form {
+      &__data {
+        opacity: 0.05;
+      }
+
+      &__success {
+        visibility: visible;
+        opacity: 1;
+        pointer-events: auto;
+        transform: translate3d(0,0,0);
+      }
+    }
+  }
+}

@@ -13,6 +13,7 @@
 namespace Modules\Util\TemplateLibraries;
 
 use Modules\Text\Models\InfoBlock;
+use Phact\Helpers\Text;
 use Phact\Template\TemplateLibrary;
 
 class UtilLibrary extends TemplateLibrary
@@ -23,7 +24,11 @@ class UtilLibrary extends TemplateLibrary
      */
     public static function tel($phone)
     {
-        return preg_replace('/[^0-9\+]/', '', $phone);
+        $phone = preg_replace('/[^0-9\+]/','', $phone);
+        if (Text::startsWith($phone, '8')) {
+            $phone = '+7' . mb_substr($phone, 1, mb_strlen($phone, 'UTF-8') - 1, 'UTF-8');
+        }
+        return $phone;
     }
 
     /**

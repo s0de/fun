@@ -7,11 +7,6 @@ return [
         'namespace' => 'sitemap'
     ],
     [
-        'route' => '',
-        'path' => 'Modules.Main.routes',
-        'namespace' => 'main'
-    ],
-    [
         'route' => '/admin',
         'path' => 'Modules.Admin.routes',
         'namespace' => 'admin'
@@ -25,5 +20,20 @@ return [
         'route' => '/admin/editor',
         'path' => 'Modules.Editor.routes',
         'namespace' => 'editor'
+    ],
+    [
+        'route' => '',
+        'path' => 'Modules.Meta.routes',
+        'namespace' => 'meta'
+    ],
+    [
+        'route' => '/request',
+        'path' => 'Modules.Request.routes',
+        'namespace' => 'request'
+    ],
+    [
+        'route' => '',
+        'path' => 'Modules.Main.routes',
+        'namespace' => 'main'
     ],
 ];
