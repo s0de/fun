@@ -1,10 +1,11 @@
 {extends "_layouts/base.tpl"}
 
 {block 'main'}
+    {add $url = 'request:recall'}
     <div class="row">
         <div class="column">
-            {set $form = $.get_recall_form()}
-            <form action="{$form->getAbsoluteUrl()}" method="post" data-ajax-form="{$form->getName()}" class="request-form">
+            {add $form = $.get_recall_form()}
+            <form action="{url $url}" method="post" data-ajax-form="{$form->getName()}" class="request-form">
                 <div class="request-form__data">
                     {raw $form->render()}
                     <button class="button" type="submit">

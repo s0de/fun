@@ -4,12 +4,14 @@ namespace Modules\Request\Forms;
 
 use Modules\Request\Models\Recall;
 use Modules\Util\Forms\Fields\PhoneField;
+use Phact\Di\ComponentFetcher;
 use Phact\Form\ModelForm;
-use Phact\Main\Phact;
 
 class RecallForm extends ModelForm
 {
-    public $title = "";
+    use ComponentFetcher;
+
+    public $title = '';
 
     public function getFields()
     {
@@ -25,10 +27,5 @@ class RecallForm extends ModelForm
     public function getModel()
     {
         return new Recall;
-    }
-
-    public function getAbsoluteUrl()
-    {
-        return Phact::app()->router->url('request:recall');
     }
 }

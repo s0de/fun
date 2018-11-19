@@ -16,10 +16,24 @@ use Modules\Request\Contrib\FormsProcessor;
 use Modules\Request\Forms\RecallForm;
 use Modules\Request\Models\Lead;
 use Phact\Controller\Controller;
+use Phact\Event\EventManagerInterface;
+use Phact\Request\HttpRequestInterface;
+use Phact\Template\RendererInterface;
 
 class RequestController extends Controller
 {
     use FormsProcessor;
+
+    /**
+     * @var EventManagerInterface
+     */
+    private $eventManager;
+
+    public function __construct(EventManagerInterface $eventManager, HttpRequestInterface $request, RendererInterface $renderer = null)
+    {
+        parent::__construct($request, $renderer);
+        $this->eventManager = $eventManager;
+    }
 
     public function lead()
     {
@@ -32,6 +46,6 @@ class RequestController extends Controller
 
     public function recall()
     {
-        $this->processInlineForm(new RecallForm());
+        $this->processInlineForm(new RecallForm(), $this->eventManager);
     }
 }

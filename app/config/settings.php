@@ -191,6 +191,9 @@ return [
                 ]]
             ]
         ],
+        'telegram' => [
+            'class' => \Modules\Util\Components\Telegram::class
+        ],
     ],
     'autoloadComponents' => [
         'errorHandler'
