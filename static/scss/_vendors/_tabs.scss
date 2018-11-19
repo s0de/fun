@@ -1,0 +1,19 @@
+.smart-tabs {
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+
+  li {
+    a {
+      display: block;
+    }
+  }
+}
+
+.smart-content {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
