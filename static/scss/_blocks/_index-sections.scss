@@ -1,0 +1,96 @@
+.index-sections {
+  padding-top: 30px;
+
+  &__section {
+    display: block;
+    position: relative;
+    padding-top: (665/1024)*100%;
+    overflow: hidden;
+
+    &:hover {
+      .index-sections__bg {
+        transform: scale(1.1);
+      }
+
+      .index-sections {
+        &__section-content {
+          transform: translate3d(0, 0, 0);
+          transition-delay: 0s;
+        }
+
+        &__section-description {
+          opacity: 1;
+          transition-delay: 0.4s;
+        }
+
+        &__section-more {
+          opacity: 1;
+          transition-delay: 0.6s;
+        }
+      }
+    }
+  }
+
+  &__bg {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    transition: all 2s;
+
+    &_kitchens {
+      background-image: url("../images/index/kitchens.jpg");
+    }
+
+    &_сupboard {
+      background-image: url("../images/index/сupboard.jpg");
+    }
+  }
+
+  &__section-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    box-shadow: 0 0 20px 10px rgba(0,0,0,0.6);
+    background-color: rgba(0,0,0,0.6);
+    color: #fff;
+    padding: 10px 20px 20px;
+    transition: all 0.8s;
+    transition-delay: 0.4s;
+    transform: translate3d(0, 80px, 0);
+  }
+
+  &__section-name {
+    display: block;
+    font-size: 30px;
+    margin-bottom: 15px;
+    letter-spacing: 0.02em;
+  }
+
+  &__section-description {
+    opacity: 0;
+    display: block;
+    font-size: 14px;
+    margin-bottom: 15px;
+    transition: all 0.6s;
+    transition-delay: 0.2s;
+  }
+
+  &__section-more {
+    opacity: 0;
+    background-color: $primary-color;
+    color: #fff;
+    padding: 10px 20px;
+    display: inline-block;
+    transition: all 0.6s;
+    transition-delay: 0s;
+
+    &:hover {
+      background-color: #b3251a;
+    }
+  }
+}

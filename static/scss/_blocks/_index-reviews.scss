@@ -1,0 +1,10 @@
+.index-reviews {
+  padding-top: 40px;
+
+  &__review {
+    margin-bottom: 30px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

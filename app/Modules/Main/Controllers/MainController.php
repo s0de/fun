@@ -21,10 +21,10 @@ class MainController extends Controller
 {
     public function index(FlashInterface $flash, BreadcrumbsInterface $breadcrumbs)
     {
-        $flash->error('Error');
-        $flash->success('Success');
-
-        $breadcrumbs->add('Breadcrumb');
+//        $flash->error('Error');
+//        $flash->success('Success');
+//
+//        $breadcrumbs->add('Breadcrumb');
 
         echo $this->render("pages/index/index.tpl", [
 

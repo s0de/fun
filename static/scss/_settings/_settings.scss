@@ -1,4 +1,4 @@
-$max-row-width: 1008;
+$max-row-width: 1170;
 $grid-columns: 12;
 $grid: (
   small: (
@@ -13,12 +13,21 @@ $grid: (
   )
 );
 $body-font-size: 16px;
-$font: "Arial", sans-serif;
-$h-font: "Arial", sans-serif;
+$font: "PT Sans", sans-serif;
+$h-font: "PT Sans", sans-serif;
+
+$font: "Montserrat", sans-serif;
+$h-font: "Montserrat", sans-serif;
 
 $t: transparent;
 
-$primary-color: #01c767;
+$text-color: #000;
+
+$primary-color: #db251a;
+$primary-color-dark: #b3251a;
+
+$secondary-color: #183885;
+
 $alert-color: #b50000;
 
 $default-transition: all 0.4s;

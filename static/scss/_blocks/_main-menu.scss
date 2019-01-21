@@ -1,0 +1,38 @@
+.main-menu {
+  display: flex;
+  justify-content: space-between;
+
+  &__item {
+
+  }
+
+  &__link {
+    padding: 20px 10px;
+
+    &:hover {
+      .main-menu__link-text {
+        &:after {
+          opacity: 1;
+          left: 0;
+          right: 0;
+        }
+      }
+    }
+  }
+
+  &__link-text {
+    position: relative;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 110%;
+      opacity: 0;
+      height: 1px;
+      left: 50%;
+      right: 50%;
+      background-color: $text-color;
+      transition: 0.4s;
+    }
+  }
+}
