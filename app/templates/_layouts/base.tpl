@@ -7,9 +7,6 @@
         {render_meta:raw}
     {/block}
 
-
-    {*<link href="https://fonts.googleapis.com/css?family=PT+Sans:400,400i,700,700i|Roboto:300,400,400i,500,500i,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">*}
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,400i,500,700,700i&amp;subset=cyrillic,cyrillic-ext,latin-ext" rel="stylesheet">
     <link rel="stylesheet" href="{$.assets_public_path('main.css', 'frontend')}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
