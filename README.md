@@ -5,6 +5,8 @@
 
 ```bash
 git clone .
+composer install
+composer run-script post-create-project-cmd
 yarn
 yarn build_admin
 goreman start

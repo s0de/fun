@@ -149,18 +149,18 @@ return [
         'settings' => [
             'class' => \Phact\Components\Settings::class
         ],
-        'cache.default' => [
+        'cache' => [
             'class' => \Phact\Cache\Drivers\File::class
         ],
         'mail' => [
             'class' => \Modules\Mail\Components\Mailer::class,
             'properties' => [
-                'defaultFrom' => 'EMAIL',
+                'defaultFrom' => 'order@rclass.pro',
                 'mode' => 'smtp',
                 'config' => [
                     'host' => 'smtp.yandex.ru',
-                    'username' => 'USERNAME',
-                    'password' => 'PASSWORD',
+                    'username' => 'order@rclass.pro',
+                    'password' => 'C9o375JAmo',
                     'port' => '465',
                     'security' => 'ssl'
                 ]
