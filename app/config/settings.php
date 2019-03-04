@@ -15,7 +15,8 @@ return [
         'Meta',
         'User',
         'Mail',
-        'Sitemap'
+        'Sitemap',
+        'AsyncEvent'
     ],
     'components' => [
         'paths' => [
@@ -100,6 +101,9 @@ return [
         ],
         'event' => [
             'class' => \Phact\Event\EventManager::class
+        ],
+        'asyncEvent' => [
+            'class' => \Modules\AsyncEvent\Components\AsyncEventManager::class
         ],
         'session' => [
             'class' => \Phact\Request\Session::class
@@ -194,8 +198,12 @@ return [
         'telegram' => [
             'class' => \Modules\Util\Components\Telegram::class
         ],
+        'notificationManager' => [
+            'class' => \Modules\Request\Components\NotificationManager::class
+        ],
     ],
     'autoloadComponents' => [
-        'errorHandler'
+        'errorHandler',
+        'notificationManager'
     ]
 ];

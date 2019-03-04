@@ -3,16 +3,16 @@
 namespace Modules\Request\Contrib;
 
 
-use Phact\Event\EventManagerInterface;
+use Modules\AsyncEvent\Components\AsyncEventManagerInterface;
 use Phact\Form\ModelForm;
 use Phact\Main\Phact;
 
 trait FormsProcessor
 {
-    protected function processModelForm(ModelForm $form, EventManagerInterface $eventManager = null, $template, $successTemplate, $params = [], $safeAttributes = [])
+    protected function processModelForm(ModelForm $form, AsyncEventManagerInterface $asyncEventManager = null, $template, $successTemplate, $params = [], $safeAttributes = [])
     {
         if ($form->fill($_POST, $_FILES) && $form->valid && $form->save($safeAttributes)) {
-            $this->triggerFormSaved($form, $eventManager);
+            $this->triggerFormSaved($form, $asyncEventManager);
             echo $this->render($successTemplate, $params);
             Phact::app()->end();
         }
@@ -21,7 +21,7 @@ trait FormsProcessor
         ], $params));
     }
 
-    protected function processInlineForm(ModelForm $form, EventManagerInterface $eventManager = null, $safeAttributes = [])
+    protected function processInlineForm(ModelForm $form, AsyncEventManagerInterface $asyncEventManager = null, $safeAttributes = [])
     {
         if (!$this->request->getIsAjax() || !$this->request->getIsPost()) {
             $this->error(404);
@@ -37,15 +37,15 @@ trait FormsProcessor
                 ]
             ];
         } else {
-            $this->triggerFormSaved($form, $eventManager);
+            $this->triggerFormSaved($form, $asyncEventManager);
         }
         echo json_encode($data);
     }
 
-    protected function triggerFormSaved(ModelForm $form, EventManagerInterface $eventManager = null)
+    protected function triggerFormSaved(ModelForm $form, AsyncEventManagerInterface $asyncEventManager = null)
     {
-        if ($eventManager) {
-            $eventManager->trigger('forms.saved', [$form->getAttributes()], $form);
+        if ($asyncEventManager) {
+            $asyncEventManager->trigger('forms.saved', [$form->getAttributes()], $form);
         }
     }
 }

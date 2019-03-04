@@ -13,6 +13,11 @@ class RecallForm extends ModelForm
 
     public $title = '';
 
+    public function __construct(array $config = [])
+    {
+        parent::__construct($config);
+    }
+
     public function getFields()
     {
         return [
