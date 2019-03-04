@@ -1,136 +1,88 @@
-(function ($) {
-  let psticky = function () {
-    return psticky.init.apply(this, arguments);
-  };
-  $.extend(psticky, {
-    options: {
-      top: undefined,
-      bottom: undefined,
-      parent: 'parent',
-      width: undefined,
-      dimension: 'top',
-      offset: false,
-      fixParentHeight: false,
-    },
-    element: undefined,
-    initOffset: 0,
-    init(element, options) {
-      if (element === undefined || !element.length) return;
-      this.element = $(element);
-      this.options = $.extend(this.options, options, this.element.data());
-      this.options.width = this.options.width ? this.options.width : this.element.width();
-      this.parent = this.options.parent == 'parent' ? this.element.parent() : this.element.closest(this.options.parent);
-      this.element.css({ width: this.options.width });
-      this.element.addClass(`psticky-dimension-${this.options.dimension}`);
-      if (this.options.fixParentHeight) {
-        const parent = this.element.parent();
-        parent.css({ height: parent.height() });
-      }
-      this.initOffset = this.element.offset().top - this.parent.offset().top;
-      this.bind();
-      $(window).trigger('scroll');
-      return this;
-    },
-    bind() {
-      const me = this;
+export default class Sticky {
+    constructor(options) {
+        this.options = options;
+        this.options.element = options.element || null;
+        this.options.parent = options.parent || 'parent';
+        this.options.top = options.top || 0;
+        this.options.bottom = options.bottom || 0;
+        this.options.width = options.width;
+        this.options.dimension = options.dimension || 'top';
+        this.options.offset = options.offset||false;
+        this.options.fix = options.fixParentHeight||false;
+        this.offset = 0;
+        this.calc = this.calculation.bind(this);
+        this.init();
+    }
 
-      const stickyBottom = this.element.offset().top + this.element.height();
-      const parentBottom = this.parent.offset().top + this.parent.height();
+    init() {
+        this.options.element.classList.add('psticky-dimension-' + this.options.dimension);
+        window.addEventListener('scroll', this.calc, false);
+    }
 
-      if (stickyBottom < parentBottom) {
-        $(window).on('scroll', (e) => {
-          me.handle();
-        });
-      }
-    },
-    handle() {
-      const top = $(window).scrollTop();
-      const height = $(window).height();
-      const offset = this.parent.offset().top;
-      const parentHeight = this.parent.outerHeight();
-      const elementHeight = this.element.outerHeight();
-      const elementOffset = this.options.top;
-      let totalOffset = offset - elementOffset;
-      if (this.options.offset) {
-        totalOffset += this.initOffset;
-      }
-
-      if (this.options.dimension == 'top') {
-        if (top > totalOffset) {
-          console.log(elementHeight);
-          if (offset + parentHeight > top + elementOffset + elementHeight) {
-            // Sticky
+    calculation() {
+        let offsetTop = this.options.element.getBoundingClientRect().top;
+        let parentBottomOffset = this.options.parent.getBoundingClientRect().bottom;
+        let parentTopOffset = this.options.parent.getBoundingClientRect().top;
+        if (offsetTop - this.options.top <= 0) {
             this.setStickyT();
-          } else {
-            // bottom
-            this.setBottomT();
-          }
-        } else {
-          this.setTopT();
+        } else if (offsetTop > 0 ) {
+            this.setTopT();
         }
-      } else if (top + height < offset + parentHeight) {
-        if (top + height > offset + elementHeight) {
-          this.setStickyB();
-        } else {
-          this.setTopB();
+        let bottomOffset = parentBottomOffset - this.options.top - this.options.element.offsetHeight;
+        if (bottomOffset < 0) {
+             this.setBottomT();
         }
-      } else {
-        this.setBottomB();
-      }
-    },
-    setStickyT() {
-      if (!this.element.hasClass('psticky-sticky')) {
-        this.clean();
-        this.element.addClass('psticky-sticky');
-        this.element.css({
-          top: this.options.top,
-        });
-      }
-    },
-    setTopT() {
-      if (!this.element.hasClass('psticky-top')) {
-        this.clean();
-        this.element.addClass('psticky-top');
-      }
-    },
-    setBottomT() {
-      if (!this.element.hasClass('psticky-bottom')) {
-        this.clean();
-        this.element.addClass('psticky-bottom');
-      }
-    },
-    setStickyB() {
-      if (!this.element.hasClass('psticky-sticky')) {
-        this.clean();
-        this.element.addClass('psticky-sticky');
-        this.element.css({
-          bottom: this.options.bottom,
-        });
-      }
-    },
-    setTopB() {
-      if (!this.element.hasClass('psticky-top')) {
-        this.clean();
-        this.element.addClass('psticky-top');
-      }
-    },
-    setBottomB() {
-      if (!this.element.hasClass('psticky-bottom')) {
-        this.clean();
-        this.element.addClass('psticky-bottom');
-      }
-    },
-    clean() {
-      this.element.removeClass('psticky-sticky psticky-bottom psticky-top');
-      this.element.css({
-        position: '',
-        top: '',
-        bottom: '',
-      });
-    },
-  });
+        if (parentTopOffset > 0) {
+            this.clean();
+        }
 
-  return $.fn.psticky = function (options) {
-    return psticky.init(this, options);
-  };
-}($));
+    }
+
+    setStickyT() {
+        if (! this.options.element.classList.contains('psticky-sticky')) {
+            this.clean();
+            this.options.element.classList.add('psticky-sticky');
+            this.options.element.style.top = `${this.options.top}px`;
+            }
+    }
+
+    setTopT() {
+        if (!this.options.element.classList.contains('psticky-top') && !this.options.element.classList.contains('psticky-sticky')) {
+            this.clean();
+            this.options.element.classList.add('psticky-top');
+        }
+    }
+
+    setBottomT() {
+        if (!this.options.element.classList.contains('psticky-bottom')) {
+            this.clean();
+            this.options.element.classList.add('psticky-bottom');
+        }
+    }
+
+    setStickyB() {
+        if (!this.options.element.classList.contains('psticky-sticky')) {
+            this.clean();
+            this.options.element.classList.add('psticky-sticky');
+            this.options.element.style.bottom = this.options.bottom;
+        }
+    }
+
+    clean() {
+        if (this.options.element.classList.contains('psticky-sticky')
+            || this.options.element.classList.contains('psticky-bottom')
+            || this.options.element.classList.contains('psticky-top')) {
+            this.options.element.classList.remove('psticky-sticky');
+            this.options.element.classList.remove('psticky-bottom');
+            this.options.element.classList.remove('psticky-top');
+        }
+        this.options.element.style.position = '';
+        this.options.element.style.top = '';
+        this.options.element.style.bottom = '';
+    }
+
+    delete() {
+        window.removeEventListener('scroll', this.calc, false);
+        this.clean();
+    }
+}
