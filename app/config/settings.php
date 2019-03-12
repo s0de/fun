@@ -42,9 +42,6 @@ return [
         'db' => [
             'class' => \Phact\Orm\ConnectionManager::class,
             'properties' => [
-                'settings' => [
-                    'cacheFieldsTimeout' => PHACT_DEBUG ? null : 86400
-                ],
                 'connections' => [
                     'default' => [
                         'host' => '127.0.0.1',
@@ -56,6 +53,29 @@ return [
                     ]
                 ]
             ],
+        ],
+        'form_manager' => [
+            'class' => \Phact\Form\Configuration\ConfigurationManager::class,
+        ],
+        'form' => [
+            'class' => \Phact\Form\Configuration\ConfigurationProvider::class,
+            'constructMethod' => 'getInstance',
+            'calls' => [
+                'setManager' => ['@form_manager']
+            ]
+        ],
+        'orm_manager' => [
+            'class' => \Phact\Orm\Configuration\ConfigurationManager::class,
+            'calls' => [
+                'setCacheFieldsTimeout' => [PHACT_DEBUG ? null : 86400]
+            ]
+        ],
+        'orm' => [
+            'class' => \Phact\Orm\Configuration\ConfigurationProvider::class,
+            'constructMethod' => 'getInstance',
+            'calls' => [
+                'setManager' => ['@orm_manager']
+            ]
         ],
         'errorHandler' => [
             'class' => \Phact\Main\ErrorHandler::class,
@@ -90,7 +110,7 @@ return [
         'raven_client' => [
             'class' => Raven_Client::class,
             'arguments' => [
-                'http://9ac062c5f54b4ef3958f90cd5db30b97:a8aa1288faf94b16b7ae507d80747994@sentry.rclass.pro/6'
+                'http://06326e23080748c5b36068d06cd31913:520908b33a0e4a168eeff7bdac782bac@sentry.rclass.pro/8'
             ]
         ],
         'raven_logger_handler' => [
@@ -204,6 +224,9 @@ return [
     ],
     'autoloadComponents' => [
         'errorHandler',
-        'notificationManager'
+        'notificationManager',
+        'translate',
+        'form',
+        'orm'
     ]
 ];
