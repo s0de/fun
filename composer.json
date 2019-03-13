@@ -15,7 +15,7 @@
         "phact-cmf/phact": "^3.0.0",
         "monolog/monolog": "~1.23",
         "phpmailer/phpmailer": "~5.2",
-        "phact-cmf-modules/admin": "~3.0.1",
+        "phact-cmf-modules/admin": "~3.0.0",
         "phact-cmf-modules/assets": "~3.0.0",
         "phact-cmf-modules/base": "~3.0.0",
         "phact-cmf-modules/editor": "~3.0.0",
