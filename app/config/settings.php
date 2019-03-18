@@ -42,9 +42,6 @@ return [
         'db' => [
             'class' => \Phact\Orm\ConnectionManager::class,
             'properties' => [
-                'settings' => [
-                    'cacheFieldsTimeout' => PHACT_DEBUG ? null : 86400
-                ],
                 'connections' => [
                     'default' => [
                         'host' => '127.0.0.1',
@@ -56,6 +53,29 @@ return [
                     ]
                 ]
             ],
+        ],
+        'form_manager' => [
+            'class' => \Phact\Form\Configuration\ConfigurationManager::class,
+        ],
+        'form' => [
+            'class' => \Phact\Form\Configuration\ConfigurationProvider::class,
+            'constructMethod' => 'getInstance',
+            'calls' => [
+                'setManager' => ['@form_manager']
+            ]
+        ],
+        'orm_manager' => [
+            'class' => \Phact\Orm\Configuration\ConfigurationManager::class,
+            'calls' => [
+                'setCacheFieldsTimeout' => [PHACT_DEBUG ? null : 86400]
+            ]
+        ],
+        'orm' => [
+            'class' => \Phact\Orm\Configuration\ConfigurationProvider::class,
+            'constructMethod' => 'getInstance',
+            'calls' => [
+                'setManager' => ['@orm_manager']
+            ]
         ],
         'errorHandler' => [
             'class' => \Phact\Main\ErrorHandler::class,
@@ -204,6 +224,9 @@ return [
     ],
     'autoloadComponents' => [
         'errorHandler',
-        'notificationManager'
+        'notificationManager',
+        'translate',
+        'form',
+        'orm'
     ]
 ];
