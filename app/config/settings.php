@@ -183,7 +183,7 @@ return [
                 'mode' => 'smtp',
                 'config' => [
                     'host' => 'smtp.yandex.ru',
-                    'username' => 'order@rclass.pro',
+                    'username' => 'orders@rclass.pro',
                     'password' => 'C9o375JAmo',
                     'port' => '465',
                     'security' => 'ssl'
