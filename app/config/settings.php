@@ -179,7 +179,7 @@ return [
         'mail' => [
             'class' => \Modules\Mail\Components\Mailer::class,
             'properties' => [
-                'defaultFrom' => 'order@rclass.pro',
+                'defaultFrom' => 'orders@rclass.pro',
                 'mode' => 'smtp',
                 'config' => [
                     'host' => 'smtp.yandex.ru',
