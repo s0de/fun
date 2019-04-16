@@ -41,7 +41,7 @@ class NotificationManager
         $this->eventManager->on('forms.saved', function (ModelForm $form) {
             $this->mailer->send("Заявка на звонок с сайта", 'mail/model.tpl', [
                 'model' => $form->getInstance(),
-                'logoPath' => '/static/images/base/logo-small.png'
+                'logoPath' => '/static/images/base/logo.png'
             ]);
         }, RecallForm::class);
     }
