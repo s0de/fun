@@ -71,17 +71,17 @@ function yandexGoal(goal) {
   }
 }
 
-function googleGoal(goal, category) {
-  if (gtag) {
-    gtag('event', goal, {
-      'event_category': category
+function googleGoal(goal, action) {
+  if (window.gtag) {
+    window.gtag('event', action, {
+      'event_category': goal
     });
   }
 }
 
 function goal(goal) {
   yandexGoal(goal);
-  googleGoal(goal, 'events');
+  googleGoal(goal, 'click');
 }
 
 window.goal = goal;
