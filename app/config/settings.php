@@ -47,7 +47,7 @@ return [
                         'host' => '127.0.0.1',
                         'dbname' => 'tpl',
                         'user' => 'root',
-                        'password' => 'hZairr9APo',
+                        'password' => '',
                         'charset' => 'utf8',
                         'driver' => 'pdo_mysql',
                     ]

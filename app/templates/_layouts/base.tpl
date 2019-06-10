@@ -18,7 +18,7 @@
         <div class="layout__wrapper">
             {include "_parts/header.tpl" class="layout__header"}
 
-
+            {render_flash:raw template='base/_flash.tpl'}
 
             {block 'content-header'}
                 <div class="content-header">
