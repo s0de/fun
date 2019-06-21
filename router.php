@@ -1,5 +1,5 @@
 <?php
-if (preg_match('/\.(?:png|jpg|jpeg|gif|woff|ttf|woff2|eot|js|css)$/i', $_SERVER["REQUEST_URI"])) {
+if (preg_match('/\.(?:png|jpg|jpeg|gif|woff|ttf|woff2|eot|js|pdf|css)$/i', $_SERVER["REQUEST_URI"])) {
     return false;
 }
 
