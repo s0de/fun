@@ -51,6 +51,7 @@ class MainSettings extends Model
             'policy' => [
                 'class' => FileField::class,
                 'label' => 'Условия обработки персональных данных (PDF)',
+                'md5Name' => true,
                 'null' => true
             ],
             'counters' => [
