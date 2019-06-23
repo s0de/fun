@@ -23,8 +23,6 @@ class ControllerCommand extends Command
         $nameController = readline('name of controller: ');
 
         $this->create($nameModule, $nameController);
-
-        echo PHP_EOL;
     }
 
     public function create($inputModule, $inputController)
