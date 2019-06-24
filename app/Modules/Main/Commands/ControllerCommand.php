@@ -17,6 +17,6 @@ class ControllerCommand extends CreatorCommand
         $controllerName = readline('name of controller: ');
         $content = "<?php\n\nnamespace Modules\\" . $moduleName . "\\Controllers;\n\nuse Phact\\Controller\\Controller;\n\n\nclass " . $controllerName . "Controller extends Controller\n{\n\tpublic function index()\n\t{\n\n\t}\n}";
 
-        $this->create($moduleName, $controllerName, $content, $verbosePath, $verboseName, $verboseFile);
+        $this->createCreatorEntity($moduleName, $controllerName, $content, $verbosePath, $verboseName, $verboseFile);
     }
 }
