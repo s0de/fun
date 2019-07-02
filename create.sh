@@ -24,7 +24,7 @@ echo -en "\x1b[36mУстанавливаю composer:\x1b[0m"
 ssh -t $USERNAME@$HOST "cd $PROJECT_DIR && curl -sS https://getcomposer.org/installer -o composer-setup.php && php composer-setup.php";
 
 echo -en "\x1b[36mУстанавливаю пакеты:\x1b[0m"
-ssh -t $USERNAME@$HOST "cd $PROJECT_DIR && php composer.phar install && php composer.phar run-script post-create-project-cmd";
+ssh -t $USERNAME@$HOST "cd $PROJECT_DIR && php composer.phar install && cd $PROJECT_DIR/www && mkdir static_modules && php index.php Base StaticModules";
 
 #############
 
