@@ -7,6 +7,7 @@ require('./flash.js');
 require('./form.js');
 require('./list.js');
 require('./prevention.js');
+require('./colorPicker.js');
 
 require('jquery-form/dist/jquery.form.min.js');
 

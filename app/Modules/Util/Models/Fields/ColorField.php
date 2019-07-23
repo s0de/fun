@@ -17,7 +17,6 @@ namespace Modules\Util\Models\Fields;
 use Phact\Form\Fields\DropDownField;
 use Phact\Orm\Fields\CharField;
 
-
 class ColorField extends CharField
 {
     public function setUpFormField($config = [])
