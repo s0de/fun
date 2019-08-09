@@ -29,15 +29,10 @@ class RequestModule extends Module implements AdminMenuInterface
      * @var EventManagerInterface
      */
     private $eventManager;
-    /**
-     * @var Telegram
-     */
-    private $telegram;
 
     public function __construct(
         string $name,
         EventManagerInterface $eventManager,
-        Telegram $telegram,
         CacheInterface $cacheDriver = null,
         Translate $translate = null
     )
@@ -50,14 +45,5 @@ class RequestModule extends Module implements AdminMenuInterface
     public function getVerboseName()
     {
         return 'Заявки';
-    }
-
-    public function onApplicationInit()
-    {
-        $this->eventManager->on("forms.saved", function ($form, $attributes) {
-            if (isset($attributes['phone']) && $attributes['phone']) {
-                $this->telegram->send("Новая заявка: {$attributes['phone']}");
-            }
-        }, RecallForm::class);
     }
 }
