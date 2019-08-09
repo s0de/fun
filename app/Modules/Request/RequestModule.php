@@ -38,7 +38,6 @@ class RequestModule extends Module implements AdminMenuInterface
     )
     {
         $this->eventManager = $eventManager;
-        $this->telegram = $telegram;
         parent::__construct($name, $cacheDriver, $translate);
     }
 
