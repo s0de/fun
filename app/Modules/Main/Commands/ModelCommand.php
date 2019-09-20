@@ -26,7 +26,7 @@ class ModelCommand extends CreatorCommand
             $this->createCreatorEntity($moduleName, $modelName, $adminContent, 'Admin', 'AdminModel', 'Admin');
         }
 
-        $content = "<?php\n\nnamespace Modules\\" . $moduleName . "\\Models;\n\nuse Phact\\Orm\\Model;\n\n\nclass " . $modelName . " extends Model\n{\n\tpublic static function getFields()\n\t{\n\t\treturn [];\n\t}\n}";
+        $content = "<?php\n\nnamespace Modules\\" . $moduleName . "\\Models;\n\nuse Phact\\Orm\\Model;\n\n\nclass " . $modelName . " extends Model\n{\n\tpublic static function getFields()\n\t{\n\t\treturn [];\n\t}\n\n\tpublic function __toString()\n\t{\n\t\treturn (string)\$this->name;\n\t}\n}";
 
         $this->createCreatorEntity($moduleName, $modelName, $content, $verbosePath, $verboseName, $verboseFile);
     }
